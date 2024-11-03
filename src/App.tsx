@@ -1,10 +1,10 @@
 import { useRef, useState } from "react"
 import styles from "./App.module.css"
-import I_SCREM_1 from "./assets/screm-1.mp4"
-import I_SCREM_2 from "./assets/screm-2.mp4"
-import I_SCREM_3 from "./assets/screm-3.mp4"
+import I_SCREM_A from "./assets/screm-a.mp4"
+import I_SCREM_B from "./assets/screm-b.mp4"
+import I_SCREM_C from "./assets/screm-c.mp4"
 
-const SCREMS = [I_SCREM_1, I_SCREM_2, I_SCREM_3]
+const SCREMS = [I_SCREM_A, I_SCREM_B, I_SCREM_C]
 
 export function App() {
   const audioRefs = SCREMS.map(() => useRef<HTMLAudioElement>(null))
@@ -40,6 +40,13 @@ export function App() {
           }}
         ></audio>
       ))}
+      <footer>
+        <small>
+          <a href="https://github.com/jncornett/gf" className="gf">
+            github.com/jncornett/gf
+          </a>
+        </small>
+      </footer>
     </>
   )
 }
