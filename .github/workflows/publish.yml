@@ -10,3 +10,4 @@ jobs:
         with:
           node-version: "22"
           cache: "pnpm"
+      - uses: pnpm/action-setup@v4
