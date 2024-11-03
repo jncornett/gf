@@ -16,3 +16,7 @@ footer {
   position: fixed;
   bottom: 1em;
 }
+
+button:disabled {
+  border-style: unset;
+}
