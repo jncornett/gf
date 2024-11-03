@@ -1,33 +1,42 @@
 import { useRef, useState } from "react"
+import styles from "./App.module.css"
 import I_SCREM_1 from "./assets/screm-1.mp4"
 import I_SCREM_2 from "./assets/screm-2.mp4"
 import I_SCREM_3 from "./assets/screm-3.mp4"
 
-const CLIPS = [{ src: I_SCREM_1 } as const, { src: I_SCREM_2 } as const, { src: I_SCREM_3 } as const] as const
+const SCREMS = [I_SCREM_1, I_SCREM_2, I_SCREM_3]
 
 export function App() {
-  const audioRefs = CLIPS.map(() => useRef<HTMLAudioElement>(null))
-  const [{ playing, clip }, setPlayerState] = useState({ playing: false, clip: 0 })
+  const audioRefs = SCREMS.map(() => useRef<HTMLAudioElement>(null))
+  const [state, setPlayerState] = useState({ playing: false, clip: 0, next: 1 })
   return (
     <>
       <button
         type="button"
-        className={`screm-action${playing ? " active" : ""}`}
+        className={[styles.Button, state.playing && styles.active].filter(Boolean).join(" ")}
         onClick={() => {
-          const audio = audioRefs[clip].current
+          audioRefs[state.clip].current?.pause()
+          const audio = audioRefs[state.next].current
           if (!audio) return
           audio.currentTime = 0
           audio.play()
-          setPlayerState({ playing: true, clip: (clip + 1) % CLIPS.length })
+          setPlayerState({
+            playing: true,
+            clip: state.next,
+            next: (state.next + 1) % audioRefs.length,
+          })
         }}
       ></button>
-      {CLIPS.map(({ src }, i) => (
+      {SCREMS.map((src, i) => (
         <audio
           key={i}
           src={src}
           ref={audioRefs[i]}
           onPause={() => {
-            setPlayerState({ playing: false, clip })
+            setPlayerState({
+              ...state,
+              playing: false,
+            })
           }}
         ></audio>
       ))}

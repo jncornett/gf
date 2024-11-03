@@ -1,0 +1,15 @@
+.Button {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background-image: url("./assets/hyrax-inactive.webp");
+  background-size: contain;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  border: none;
+}
+
+.Button.active {
+  background-image: url("./assets/hyrax-active.webp");
+}

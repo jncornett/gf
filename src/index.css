@@ -12,19 +12,3 @@ main {
   height: 100%;
   padding: 4em;
 }
-
-.screm-action {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  background-image: url("/src/hyrax_inactive.png");
-  background-size: contain;
-  background-position: 50%;
-  background-repeat: no-repeat;
-  border: none;
-}
-
-.screm-action.active {
-  background-image: url("/src/hyrax_active.png");
-}

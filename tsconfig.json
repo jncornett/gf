@@ -30,9 +30,12 @@
       {
         "name": "@mizdra/typescript-plugin-asset",
         "include": ["src/assets/**/*"],
-        "extensions": [".mp4"],
+        "extensions": [".mp4", ".webp"],
         "exportedNameCase": "constantCase",
         "exportedNamePrefix": "I_"
+      },
+      {
+        "name": "typescript-plugin-css-modules"
       }
     ]
   },
