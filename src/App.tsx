@@ -14,7 +14,9 @@ export function App() {
       <button
         type="button"
         className={[styles.Button, state.playing && styles.active].filter(Boolean).join(" ")}
+        disabled={state.playing}
         onClick={() => {
+          if (state.playing) return
           audioRefs[state.clip].current?.pause()
           const audio = audioRefs[state.next].current
           if (!audio) return
