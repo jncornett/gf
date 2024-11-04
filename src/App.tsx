@@ -1,21 +1,26 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Player from "./player.jsx"
 import styles from "./App.module.css"
 
 export function App({ player }: { player: Player }) {
   const [playing, setPlaying] = useState(false)
+  useEffect(() => {
+    const ln = (t: "playing" | "paused") => {
+      setPlaying(t === "playing")
+    }
+    player.addListener(ln)
+    return () => {
+      player.removeListener(ln)
+    }
+  }, [player])
   return (
     <>
       <button
         type="button"
         className={[styles.Button, playing && styles.active].filter(Boolean).join(" ")}
-        disabled={playing}
         onClick={() => {
-          setPlaying(true)
-          player.play().finally(() => {
-            setPlaying(false)
-            player.next()
-          })
+          player.play()
+          player.next()
         }}
       ></button>
       <footer>
